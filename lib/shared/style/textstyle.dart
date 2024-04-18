@@ -23,4 +23,45 @@ abstract class AppTextStyle{
     fontFamily: _fontFamily,
   );
 
+  static TextStyle titleSliderTextStyle ()=> const TextStyle(
+    fontSize: 18,
+    color: Colors.white,
+    fontWeight: FontWeight.bold,
+    fontFamily: _fontFamily,
+  );
+
+  static TextStyle titlePopularTextStyle ()=> const TextStyle(
+    fontSize: 22,
+    color: Colors.black,
+    fontWeight: FontWeight.bold,
+    fontFamily: _fontFamily,
+  );
+
+  static TextStyle descriptionSliderTextStyle ()=> const TextStyle(
+    fontSize: 14,
+    color: Colors.white,
+    fontWeight: FontWeight.w500,
+    fontFamily: _fontFamily,
+  );
+  static TextStyle descriptionPopularTextStyle ()=> const TextStyle(
+    fontSize: 18,
+    color: Colors.black,
+    fontWeight: FontWeight.w500,
+    fontFamily: _fontFamily,
+  );
+
+  static TextStyle authorSliderTextStyle ()=> const TextStyle(
+    fontSize: 12,
+    color: Colors.white,
+    fontWeight: FontWeight.bold,
+    fontFamily: _fontFamily,
+  );
+
+  static TextStyle authorPopularTextStyle ()=> const TextStyle(
+    fontSize: 14,
+    color: Colors.black,
+    fontWeight: FontWeight.bold,
+    fontFamily: _fontFamily,
+  );
+
 }
