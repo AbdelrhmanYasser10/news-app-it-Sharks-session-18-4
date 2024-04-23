@@ -14,3 +14,12 @@ class GetBreakingNewsError extends NewsState{
   final String message;
   GetBreakingNewsError({required this.message});
 }
+
+class GetCategoryNewsLoading extends NewsState{}
+
+class GetCategoryNewsSuccessfully extends NewsState{}
+
+class GetCategoryNewsError extends NewsState{
+final String message;
+GetCategoryNewsError({required this.message});
+}

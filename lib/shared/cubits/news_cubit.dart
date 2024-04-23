@@ -15,6 +15,8 @@ class NewsCubit extends Cubit<NewsState> {
 
   NewsModel? breakingNews;
 
+  NewsModel? categoryNews;
+
   void getBreakingNews(){
     emit(GetBreakingNewsLoading());
     DioHelper.getData(
@@ -39,4 +41,27 @@ class NewsCubit extends Cubit<NewsState> {
       emit(GetBreakingNewsError(message: error.toString()));
     });
   }
+
+  void getCategoryNews({required String category}){
+    emit(GetCategoryNewsLoading());
+    DioHelper.getData(
+        endPoint: TOPHEADLINES,
+      queryParameters: {
+          'apiKey':APIKEY,
+          'category':category,
+          'country':'us',
+      },
+    ).then((value) {
+      if(value.statusCode! >= 200 && value.statusCode! <= 299){
+        categoryNews = NewsModel.fromJson(value.data);
+        emit(GetCategoryNewsSuccessfully());
+      }
+      else{
+        emit(GetCategoryNewsError(message: value.statusMessage.toString()));
+      }
+    }).catchError((error){
+      emit(GetCategoryNewsError(message: error.toString()));
+    });
+  }
+
 }
