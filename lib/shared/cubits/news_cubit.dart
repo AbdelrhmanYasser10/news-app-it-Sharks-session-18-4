@@ -42,15 +42,25 @@ class NewsCubit extends Cubit<NewsState> {
     });
   }
 
-  void getCategoryNews({required String category}){
+  void getCategoryNewsOrGetSearchNews({required String text , required bool isFromCategory}){
+    Map<String,dynamic> queryParaamter = {};
+    if(isFromCategory){
+      queryParaamter = {
+        'apiKey':APIKEY,
+        'category':text,
+        'country':'us',
+      };
+    }
+    else{
+      queryParaamter = {
+        'apiKey':APIKEY,
+        'q':text,
+      };
+    }
     emit(GetCategoryNewsLoading());
     DioHelper.getData(
-        endPoint: TOPHEADLINES,
-      queryParameters: {
-          'apiKey':APIKEY,
-          'category':category,
-          'country':'us',
-      },
+        endPoint: isFromCategory ? TOPHEADLINES : EVERYTHING,
+      queryParameters: queryParaamter,
     ).then((value) {
       if(value.statusCode! >= 200 && value.statusCode! <= 299){
         categoryNews = NewsModel.fromJson(value.data);

@@ -6,8 +6,8 @@ import 'package:untitled10/shared/widgets/list_of_news/list_of_news.dart';
 
 class ResultsScreen extends StatelessWidget {
   final String title;
-
-  const ResultsScreen({Key? key, required this.title}) : super(key: key);
+  final bool isFromCategory;
+  const ResultsScreen({Key? key, required this.title , this.isFromCategory = true}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -52,9 +52,12 @@ class ResultsScreen extends StatelessWidget {
             );
           }
           else {
-            return ListOfNews(
-                news: cubit.categoryNews!,
-                isInHome: false,
+            return RefreshIndicator(
+              onRefresh: () => Future(() => cubit.getCategoryNewsOrGetSearchNews(text: title.toLowerCase(),isFromCategory: isFromCategory)),
+              child: ListOfNews(
+                  news: cubit.categoryNews!,
+                  isInHome: false,
+              ),
             );
           }
         },

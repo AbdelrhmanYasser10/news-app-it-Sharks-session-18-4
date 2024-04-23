@@ -88,7 +88,7 @@ class CategoryScreen extends StatelessWidget {
   }) {
     return GestureDetector(
       onTap: () {
-        NewsCubit.get(context).getCategoryNews(category: title.toLowerCase());
+        NewsCubit.get(context).getCategoryNewsOrGetSearchNews(text: title.toLowerCase(),isFromCategory: true);
         Navigator.push(
           context,
           MaterialPageRoute(
